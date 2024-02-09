@@ -11,4 +11,20 @@ function getComputerChoice(){
     return computerSelection;
 }
 
-alert(getComputerChoice());
+function getPlayerChoice(){
+    let playerSelection = prompt("Choose: Rock, paper and scissors!!");
+    let invalidChoice = true;
+    
+    while(invalidChoice){
+        playerSelection = playerSelection.toLowerCase();
+        if(playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){   
+            invalidChoice = false;
+        } else {
+            alert("Can't understand your choice, make sure you're typing correctly.");
+            playerSelection = prompt("Try again: Rock, paper and scissors!!");
+        }
+    }
+    return playerSelection;
+}
+
+getPlayerChoice();
