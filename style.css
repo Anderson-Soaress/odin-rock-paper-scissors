@@ -4,13 +4,12 @@
     font-family: "CRAMPS", sans-serif;
 }
 
-.header{
+.header, .footer{
     background-color: rgb(30, 30, 40);
     border-bottom: solid 1px black;
     text-align: center;
     padding:20px;
     color: rgb(255, 255, 255);
-    
 }
 
 .section{
@@ -50,4 +49,8 @@
 .section img{
     height: 100px;
     width: 100px;
+}
+
+.footer p{
+    font-family: Arial, Helvetica, sans-serif;
 }
