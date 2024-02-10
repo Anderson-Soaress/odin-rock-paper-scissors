@@ -51,8 +51,9 @@ function playGame(){
         } else if (whoWin == "computer"){
             computerPoints = computerPoints + 1;
         } else{}
+
     alert("Scoreboard:\nPlayer " + playerPoints + " x Computer " + computerPoints)
     }
+    
 }
 
-playGame();

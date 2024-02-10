@@ -1,0 +1,13 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+.header{
+    background-color: rgb(27, 30, 41);
+    border-bottom: solid 1px black;
+    text-align: center;
+    padding:20px;
+    color: rgb(255, 255, 255);
+    font-family: "CRAMPS", sans-serif;
+}
