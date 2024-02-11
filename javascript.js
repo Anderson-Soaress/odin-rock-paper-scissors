@@ -1,22 +1,75 @@
 function game(){
+    const divScoreboard = document.createElement("div");
+    const computerChoiceParagraph = document.createElement("p");
+    const whoWinParagraph = document.createElement("p");
+    const scoreboardParagraph = document.createElement("p");
+    const section = document.querySelector(".section");
+
     let playerChoice;
     let computerChoice;
     let result;
+    let playerPoints = 0;
+    let computerPoints = 0;
+    let textComputerChoice;
+    let textWhoWin;
+    let textScoreboard;
+    let firstTime = true;
 
     const choiceBtns = document.querySelectorAll(".btn");
     choiceBtns.forEach(button => button.addEventListener("click" , () =>{
+
+        section.appendChild(divScoreboard);
 
         playerChoice = button.value;
         computerChoice = getComputerChoice();
 
         result = whoWin(playerChoice, computerChoice);
+        
+        textComputerChoice = document.createTextNode(`The computer choose: ${computerChoice}`);
+        
+        if(result == "player"){
+            textWhoWin = document.createTextNode(`You win, ${playerChoice} beats ${computerChoice}!!`)
+            playerPoints = playerPoints + 1;
+        } else if (result == "computer"){
+            textWhoWin = document.createTextNode(`The computer wins, ${computerChoice} beats ${playerChoice}!!`)
+            computerPoints = computerPoints + 1;
+        } else{
+            textWhoWin = document.createTextNode("No winners!! It's a draw.")
+        }
+        
+        textScoreboard = document.createTextNode(`You ${playerPoints} x ${computerPoints} Computer.`)
 
-        scoreboard(result);
+        computerChoiceParagraph.appendChild(textComputerChoice);
+        whoWinParagraph.appendChild(textWhoWin);
+        scoreboardParagraph.appendChild(textScoreboard);
+
+        divScoreboard.appendChild(computerChoiceParagraph);
+        divScoreboard.appendChild(whoWinParagraph);
+        divScoreboard.appendChild(scoreboardParagraph);
+
+        const btnRemove = document.createElement("button");
+        const textBtnRemove = document.createTextNode("Remove");
+        btnRemove.appendChild(textBtnRemove);
+        divScoreboard.appendChild(btnRemove)
+
+        btnRemove.addEventListener("click", () => {
+            divScoreboard.removeChild(btnRemove);
+            computerChoiceParagraph.removeChild(textComputerChoice);
+            whoWinParagraph.removeChild(textWhoWin);
+            scoreboardParagraph.removeChild(textScoreboard);
+            divScoreboard.removeChild(computerChoiceParagraph);
+            divScoreboard.removeChild(whoWinParagraph);
+            divScoreboard.removeChild(scoreboardParagraph);
+            
+            section.removeChild(divScoreboard);
+        })
+
+        console.log(textComputerChoice);
     }))
 }
 
 function getComputerChoice(){
-    computerChoice = ["rock", "paper", "scissors"];
+    let computerChoice = ["rock", "paper", "scissors"];
     randomChoice = Math.floor(Math.random() * 3);
     computerSelection = computerChoice[randomChoice];
 
@@ -25,13 +78,10 @@ function getComputerChoice(){
 
 function whoWin(playerSelection, computerSelection){
     if((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")){
-        alert(" You win! " + playerSelection + " beats " + computerSelection);
         return "player"
     } else if ((playerSelection == "rock" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "rock")){
-        alert("You lose! " + computerSelection + " beats " + playerSelection)
         return "computer"
     } else{
-        alert("It's a draw!!")
         return "draw"
     }
 }
