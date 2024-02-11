@@ -4,13 +4,9 @@ const whoWinParagraph = document.createElement("p");
 const scoreboardParagraph = document.createElement("p");
 const section = document.querySelector(".section");
 
-let textComputerChoice;
-let textWhoWin;
-let textScoreboard;
-
-textWhoWin = document.createTextNode(``)
-textComputerChoice = document.createTextNode(``);
-textScoreboard = document.createTextNode(``);
+let textWhoWin = document.createTextNode(``)
+let textComputerChoice = document.createTextNode(``);
+let textScoreboard = document.createTextNode(``);
 section.appendChild(divScoreboard);
 
 computerChoiceParagraph.appendChild(textComputerChoice);
