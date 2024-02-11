@@ -31,20 +31,14 @@ function game(){
     const choiceBtns = document.querySelectorAll(".btn");
     choiceBtns.forEach(button => button.addEventListener("click" , () =>{
 
-        computerChoiceParagraph.removeChild(textComputerChoice);
-        whoWinParagraph.removeChild(textWhoWin);
-        scoreboardParagraph.removeChild(textScoreboard);
-        divScoreboard.removeChild(computerChoiceParagraph);
-        divScoreboard.removeChild(whoWinParagraph);
-        divScoreboard.removeChild(scoreboardParagraph); 
-        section.removeChild(divScoreboard);
+        removeText();
 
         playerChoice = button.value;
         computerChoice = getComputerChoice();
 
         result = whoWin(playerChoice, computerChoice);
 
-        textComputerChoice = document.createTextNode(`The computer choose: ${computerChoice}`);
+        textComputerChoice = document.createTextNode(`The computer choose: ${computerChoice}.`);
 
         if(result == "player"){
             textWhoWin = document.createTextNode(`You win, ${playerChoice} beats ${computerChoice}!!`)
@@ -53,7 +47,7 @@ function game(){
             textWhoWin = document.createTextNode(`The computer wins, ${computerChoice} beats ${playerChoice}!!`)
             computerPoints = computerPoints + 1;
         } else{
-            textWhoWin = document.createTextNode("No winners!! It's a draw.")
+            textWhoWin = document.createTextNode(`No winners!! It's a draw.`)
         }
         
         textScoreboard = document.createTextNode(`You ${playerPoints} x ${computerPoints} Computer.`);
@@ -66,6 +60,8 @@ function game(){
         divScoreboard.appendChild(computerChoiceParagraph);
         divScoreboard.appendChild(whoWinParagraph);
         divScoreboard.appendChild(scoreboardParagraph);
+
+        endGame(playerPoints, computerPoints);
     }))
 }
 
@@ -87,4 +83,29 @@ function whoWin(playerSelection, computerSelection){
     }
 }
 
+function removeText(){
+    computerChoiceParagraph.removeChild(textComputerChoice);
+    whoWinParagraph.removeChild(textWhoWin);
+    scoreboardParagraph.removeChild(textScoreboard);
+    section.removeChild(divScoreboard);
+}
+
+function endGame(playerPoints, computerPoints){
+    if(playerPoints == 3 || computerPoints == 3){
+        removeText();
+        document.querySelector(".game-ui").style.filter = "brightness(60%)";
+        document.querySelector(".endgame-flex").style.display = "flex";
+        document.querySelector(".playAgain").addEventListener("click", () => {
+            location.reload();
+        });
+        
+        if(playerPoints == 3){
+            document.querySelector(".finalMessage").appendChild(document.createTextNode(`Congratulations! You Win! `));
+            document.querySelector(".finalScoreboard").appendChild(document.createTextNode(`You ${playerPoints} x ${computerPoints} Computer.`));
+        } else{
+            document.querySelector(".finalMessage").appendChild(document.createTextNode(`You lose. Try again! `));
+            document.querySelector(".finalScoreboard").appendChild(document.createTextNode(`You ${playerPoints} x ${computerPoints} Computer.`));
+        }
+    }
+}
 game();

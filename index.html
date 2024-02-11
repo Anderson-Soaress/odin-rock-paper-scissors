@@ -9,19 +9,29 @@
     <title>rock paper and scissors</title>
 </head>
 <body>
-    <div class="header">
-        <h1 id="title">Rock paper and scissors</h1>
-    </div>
-    <div class="section">
-        <h2>Choose:</h2>
-        <div class="choose">
-            <button class="btn" value="rock"><img src="images/punho.png"></button>
-            <button class="btn" value="paper"><img src="images/papel-de-mao.png"></button>
-            <button class="btn" value="scissors"><img src="images/vitoria.png"></button>
+    <div class="game-ui">
+        <div class="header">
+            <h1 id="title">Rock paper and scissors</h1>
+        </div>
+        <div class="section">
+            <h2>Choose:</h2>
+            <div class="choose">
+                <button class="btn" value="rock"><img src="images/punho.png"></button>
+                <button class="btn" value="paper"><img src="images/papel-de-mao.png"></button>
+                <button class="btn" value="scissors"><img src="images/vitoria.png"></button>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Copyright © Anderson Soares 2024</p>
         </div>
     </div>
-    <div class="footer">
-        <p>Copyright © Anderson Soares 2024</p>
+    
+    <div class="endgame-flex">
+        <div class="endgame">
+            <h2 class="finalMessage"></h2>
+            <p class="finalScoreboard"></p>
+            <button class="playAgain">Play Again</button>
+        </div>
     </div>
 </body>
 </html>
